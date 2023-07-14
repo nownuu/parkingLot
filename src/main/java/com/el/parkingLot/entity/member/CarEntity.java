@@ -1,14 +1,19 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Setter
 @Getter
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Table(name = "carInfo")
 public class CarEntity {
     @Id
