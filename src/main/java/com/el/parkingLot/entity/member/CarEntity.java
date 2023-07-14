@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Setter
 @Getter
-@Table(name = "carInfo_table")
+@Table(name = "carInfo")
 public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment

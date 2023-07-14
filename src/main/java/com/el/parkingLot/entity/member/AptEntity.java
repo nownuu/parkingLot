@@ -1,15 +1,20 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Setter
 @Getter
-@Table(name = "aptInfo_table")
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Table(name = "aptInfo")
 public class AptEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
