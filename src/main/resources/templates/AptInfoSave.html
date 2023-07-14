@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+    <form action="/parkingLot/AptInfoSave" method="post">
+        아파트 이름 :
+        <select name="aptName">
+            <option selected>푸르지오</option>
+            <option>e편한세상</option>
+            <option>래미안 자이</option>
+        </select><br>
+        아파트 동 : <input type="text" name="aptDong"><br>
+        아파트 호수 : <input type="text" name="aptHo"><br>
+        <input type="submit" value="아파트 정보 기입">
+    </form>
 </body>
 </html>

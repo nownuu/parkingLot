@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "aptInfo_table")
 public class AptEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long amNum;
 
     @Column

@@ -27,6 +27,6 @@ public class MemberController {
         System.out.println("memberDTO = " + memberDto);
         memberService.save(memberDto);
 
-        return "index";
+        return "index"; //회원가입 완료시 화면으로 돌아가기 -> 이후에 수정 가능
         }
     }
