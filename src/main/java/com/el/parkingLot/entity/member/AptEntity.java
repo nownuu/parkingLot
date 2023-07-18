@@ -18,7 +18,8 @@ import javax.persistence.*;
 public class AptEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long amNum;
+    @Column(name = "amNum")
+    private long amNum;
 
     @Column
     private String aptName;
@@ -31,7 +32,6 @@ public class AptEntity {
 
     public static AptEntity toAptEntity(AptInfoDto aptInfoDto){
         AptEntity aptEntity = new AptEntity();
-        aptEntity.setAmNum(aptInfoDto.getAmNum());
         aptEntity.setAptName(aptInfoDto.getAptName());
         aptEntity.setAptDong(aptInfoDto.getAptDong());
         aptEntity.setAptHo(aptInfoDto.getAptHo());

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Entity
 @Setter
 @Getter
@@ -13,14 +14,17 @@ import javax.persistence.*;
 public class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
+    @GeneratedValue(strategy = GenerationType.SEQUENCE) //auto_increment
     private Long memberNum;
 
-    @Column
-    private String amNum; //fk
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "amNum", referencedColumnName = "amNum")
+    private AptEntity aptEntity;
+//    private AptEntity amNum; //fk
 
-    @Column
-    private int cmNum; //fk
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "cmNum", referencedColumnName = "cmNum")
+    private CarEntity carEntity; //fk
 
     @Column
     private String memberName;
@@ -31,10 +35,8 @@ public class MemberEntity {
     public static MemberEntity toMemberEntity(MemberDto memberDto){
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setMemberNum(memberDto.getMemberNum());
-        memberEntity.setAmNum(memberDto.getAmNum());
-        memberEntity.setCmNum(memberDto.getCmNum());
         memberEntity.setMemberName(memberDto.getMemberName());
-        memberEntity.setMemberPhone(memberEntity.getMemberPhone());
+        memberEntity.setMemberPhone(memberDto.getMemberPhone());
         return memberEntity;
     }
 }

@@ -18,6 +18,7 @@ import javax.persistence.*;
 public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
+    @Column(name = "cmNum")
     private Long cmNum;
 
     @Column(unique = true)
@@ -31,7 +32,6 @@ public class CarEntity {
 
     public static CarEntity toCarEntity(CarInfoDto carInfoDto){
         CarEntity carEntity = new CarEntity();
-        carEntity.setCmNum(carInfoDto.getCmNum());
         carEntity.setCarNum(carInfoDto.getCarNum());
         carEntity.setBatValue(carInfoDto.getBatValue());
         carEntity.setCarColor(carInfoDto.getCarColor());

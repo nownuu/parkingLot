@@ -1,7 +1,10 @@
 package com.el.parkingLot.dto.member;
 
+import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.entity.member.MemberEntity;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,8 +21,6 @@ public class MemberDto {
     public static MemberDto toMemberDto(MemberEntity memberEntity) {
         MemberDto memberDto = new MemberDto();
         memberDto.setMemberNum(memberEntity.getMemberNum());
-        memberDto.setAmNum(memberEntity.getAmNum());
-        memberDto.setCmNum(memberEntity.getCmNum());
         memberDto.setMemberName(memberEntity.getMemberName());
         memberDto.setMemberPhone(memberEntity.getMemberPhone());
         return memberDto;

@@ -24,7 +24,6 @@ public class AptInfoController {
         System.out.println("AptInfoController.save");
         System.out.println("AptInfoDTO = " + aptInfoDto);
         aptInfoService.AptInfoSave(aptInfoDto);
-
-        return "index"; //초기 화면으로 돌아가기 -> 이후에 수정 가능
+        return "CarInfoSave"; //차량번호 입력 -> 이후에 수정 가능
     }
 }

@@ -35,6 +35,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 
+	/*h2 사용*/
+	// https://mvnrepository.com/artifact/com.h2database/h2
+	testImplementation 'com.h2database:h2:1.4.200'
 
 	/*mySQL 의존성 추가 소스*/
 	// https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
