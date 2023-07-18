@@ -13,8 +13,8 @@ import java.util.List;
 public class MemberDto {
 //    private long id;
     private Long memberNum; //auto_increment
-    private String amNum; //fk
-    private int cmNum; //fk
+    private Long amNum; //fk
+    private Long cmNum; //fk
     private String memberName;
     private String memberPhone;
 

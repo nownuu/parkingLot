@@ -19,7 +19,7 @@ public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
     @Column(name = "cmNum")
-    private Long cmNum;
+    private long cmNum;
 
     @Column(unique = true)
     private String carNum;
