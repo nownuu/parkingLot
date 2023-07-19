@@ -18,7 +18,7 @@ public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE) //auto_increment
     @Column(name="memberNum")
-    private Long memberNum;
+    private long memberNum;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "amNum", referencedColumnName = "amNum")
@@ -39,12 +39,12 @@ public class MemberEntity {
 
         // AptEntity 설정
         AptEntity aptEntity = new AptEntity();
-        aptEntity.setAmNum(memberDto.getAptInfoDto().getAmNum());
+        aptEntity.setAmNum(memberDto.getAmNum());
         memberEntity.setAptEntity(aptEntity);
 
         // CarEntity 설정
         CarEntity carEntity = new CarEntity();
-        carEntity.setCmNum(memberDto.getCarInfoDto().getCmNum());
+        carEntity.setCmNum(memberDto.getCmNum());
         memberEntity.setCarEntity(carEntity);
 
         // 나머지 필드 설정
@@ -53,5 +53,6 @@ public class MemberEntity {
 
         return memberEntity;
     }
+
 
 }

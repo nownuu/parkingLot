@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 @ToString
 @Embeddable
 public class CarInfoDto {
-//    private Long cmNum; //auto_increment
+    private long cmNum; //auto_increment
     private String carNum;
     private String batValue;
     private String carColor;
@@ -22,4 +22,12 @@ public class CarInfoDto {
         this.batValue = batValue;
         this.carColor = carColor;
     }
+    public static CarInfoDto fromCarEntity(CarEntity carEntity){
+        return new CarInfoDto(carEntity.getCarNum(), carEntity.getBatValue(), carEntity.getCarColor());
+    }
+
+    public long getCmNum() {
+        return cmNum;
+    }
+
 }
