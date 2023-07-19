@@ -3,22 +3,23 @@ package com.el.parkingLot.dto.member;
 import com.el.parkingLot.entity.member.CarEntity;
 import lombok.*;
 
+import javax.persistence.Embeddable;
+
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+@Embeddable
 public class CarInfoDto {
-    private Long cmNum; //auto_increment
+//    private Long cmNum; //auto_increment
     private String carNum;
     private String batValue;
     private String carColor;
 
-    public static CarInfoDto tocarInfoDto(CarEntity carEntity){
-        CarInfoDto carInfoDto = new CarInfoDto();
-        carInfoDto.setCmNum(carEntity.getCmNum());
-        carInfoDto.setCarNum(carEntity.getCarNum());
-        carInfoDto.setBatValue(carEntity.getBatValue());
-        carInfoDto.setCarColor(carEntity.getCarColor());
-        return carInfoDto;
+    public CarInfoDto(){}
+
+    public CarInfoDto(String carNum, String batValue, String carColor){
+        this.carNum = carNum;
+        this.batValue = batValue;
+        this.carColor = carColor;
     }
 }

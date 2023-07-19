@@ -20,22 +20,13 @@ public class MemberEntity {
     @Column(name="memberNum")
     private Long memberNum;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "amNum", referencedColumnName = "amNum")
+    private AptEntity aptEntity;
 
-//    @OneToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name = "amNum", referencedColumnName = "amNum")
-//    private AptEntity aptEntity;
-//    private AptEntity amNum; //fk
-
-
-//    @JoinColumn(name = "cmNum", referencedColumnName = "cmNum")
-//    private CarEntity carEntity; //fk
-
-//    @ManyToOne(cascade = CascadeType.PERSIST)
-    @Embedded
-    private AptInfoDto aptInfoDto; // 아파트 정보
-
-    @Embedded
-    private CarInfoDto carInfoDto; // 자동차 정보
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "cmNum", referencedColumnName = "cmNum")
+    private CarEntity carEntity; // 자동차 정보
 
     @Column
     private String memberName;
@@ -43,15 +34,24 @@ public class MemberEntity {
     @Column
     private String memberPhone;
 
-    public static MemberEntity toMemberEntity(MemberDto memberDto){
+    public static MemberEntity toMemberEntity(MemberDto memberDto) {
         MemberEntity memberEntity = new MemberEntity();
-        AptEntity aptEntity = new AptEntity();
-        CarEntity carEntity = new CarEntity();
 
-//        aptEntity.setAmNum(memberDto.getAmNum());
-//        carEntity.setCmNum(memberDto.getCmNum());
+        // AptEntity 설정
+        AptEntity aptEntity = new AptEntity();
+        aptEntity.setAmNum(memberDto.getAptInfoDto().getAmNum());
+        memberEntity.setAptEntity(aptEntity);
+
+        // CarEntity 설정
+        CarEntity carEntity = new CarEntity();
+        carEntity.setCmNum(memberDto.getCarInfoDto().getCmNum());
+        memberEntity.setCarEntity(carEntity);
+
+        // 나머지 필드 설정
         memberEntity.setMemberName(memberDto.getMemberName());
         memberEntity.setMemberPhone(memberDto.getMemberPhone());
+
         return memberEntity;
     }
+
 }

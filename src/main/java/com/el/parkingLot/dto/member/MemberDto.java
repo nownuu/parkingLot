@@ -11,16 +11,17 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 public class MemberDto {
-//    private long id;
-    private Long memberNum; //auto_increment
-    private Long amNum; //fk
-    private Long cmNum; //fk
+    private Long memberNum;
+    private AptInfoDto aptInfoDto;
+    private CarInfoDto carInfoDto;
     private String memberName;
     private String memberPhone;
 
     public static MemberDto toMemberDto(MemberEntity memberEntity) {
         MemberDto memberDto = new MemberDto();
         memberDto.setMemberNum(memberEntity.getMemberNum());
+        memberDto.setAptInfoDto(AptInfoDto.fromAptEntity(memberEntity.getAptEntity()));
+        memberDto.setCarInfoDto(CarInfoDto.fromCarEntity(memberEntity.getCarEntity()));
         memberDto.setMemberName(memberEntity.getMemberName());
         memberDto.setMemberPhone(memberEntity.getMemberPhone());
         return memberDto;

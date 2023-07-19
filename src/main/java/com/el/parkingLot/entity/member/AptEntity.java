@@ -35,6 +35,7 @@ public class AptEntity {
         aptEntity.setAptName(aptInfoDto.getAptName());
         aptEntity.setAptDong(aptInfoDto.getAptDong());
         aptEntity.setAptHo(aptInfoDto.getAptHo());
+
         return aptEntity;
     }
 }
