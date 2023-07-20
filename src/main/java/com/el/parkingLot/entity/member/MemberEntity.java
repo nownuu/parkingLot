@@ -1,6 +1,7 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.MemberDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,9 +51,10 @@ public class MemberEntity {
     }
 
     // 본인 차량 정보 보기
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CarEntity> cars;
 
+    @JsonIgnore
     public List<CarEntity> getCars() {
         return cars;
     }

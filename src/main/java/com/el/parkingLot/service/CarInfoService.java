@@ -20,7 +20,7 @@ public class CarInfoService {
     private final CarInfoRepository carInfoRepository;
     private final MemberRepository memberRepository;
     @Autowired
-    public CarInfoService(CarInfoRepository carInfoRepository, MemberRepository memberRepository){
+    public CarInfoService(CarInfoRepository carInfoRepository, MemberRepository memberRepository) {
         this.carInfoRepository = carInfoRepository;
         this.memberRepository = memberRepository;
     }
@@ -32,19 +32,20 @@ public class CarInfoService {
         return CarInfoDto.fromCarEntity(savedCarEntity);
     }
 
-    
-    // 본인 차량 정보 보기
+
+    /// 본인 차량 정보 보기
+    @Transactional
     public List<CarInfoDto> getCarInfoByMemberPhone(String memberPhone) {
         List<MemberEntity> memberList = memberRepository.findByMemberPhone(memberPhone);
 
         if (!memberList.isEmpty()) {
-            MemberEntity memberEntity = memberList.get(0); // Assuming the first member is the correct one
-            List<CarEntity> carEntityList = memberEntity.getCarEntities();
+            MemberEntity memberEntity = memberList.get(0);
+            List<CarEntity> carEntityList = memberEntity.getCars();
             return carEntityList.stream()
                     .map(CarInfoDto::fromCarEntity)
                     .collect(Collectors.toList());
         } else {
-            // Handle case when member is not found
+            // 회원 정보가 없을 경우 빈 리스트 반환
             return new ArrayList<>();
         }
     }

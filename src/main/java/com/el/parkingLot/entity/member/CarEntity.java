@@ -1,6 +1,7 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,8 +39,7 @@ public class CarEntity {
     @JoinColumn(name = "member_id")
     private MemberEntity member;
 
-    // Other getter and setter methods
-
+    @JsonIgnore
     public MemberEntity getMember() {
         return member;
     }
