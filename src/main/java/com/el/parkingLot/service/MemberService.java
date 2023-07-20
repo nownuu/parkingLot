@@ -23,6 +23,9 @@ public class MemberService {
         memberRepository.save(memberEntity);
     }
 
+    
+    // 로그인 
+    //memberPhone과 carNum 값 받아서 로그인
     public MemberEntity login(String memberPhone, String carNum) {
         List<MemberEntity> memberList = memberRepository.findByMemberPhone(memberPhone);
 

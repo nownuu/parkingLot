@@ -71,5 +71,18 @@ public class MemberController {
         }
     }
 
+    // 로그아웃 구현
+    @GetMapping("/parkingLot/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "login";
+    }
+
+
+    // 회원 목록 출력하기
+
+    // 회원 정보 조회
+
+
 }
 
