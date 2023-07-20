@@ -7,14 +7,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @Table(name = "member")
 public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="memberNum", nullable = false)
+    @Column(name = "memberNum", nullable = false)
     private Long memberNum;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -25,30 +25,26 @@ public class MemberEntity {
     @JoinColumn(name = "cmNum", referencedColumnName = "cmNum")
     private CarEntity carEntity;
 
-    @Column
+    @Column(name = "member_name")
     private String memberName;
 
-    @Column
+    @Column(name = "member_phone")
     private String memberPhone;
 
     public static MemberEntity toMemberEntity(MemberDto memberDto) {
         MemberEntity memberEntity = new MemberEntity();
 
         // AptEntity - amNum
-        AptEntity aptEntity = new AptEntity();
-        aptEntity.setAmNum(memberDto.getAmNum());
+        AptEntity aptEntity = AptEntity.toAptEntity(memberDto.getAptInfoDto());
         memberEntity.setAptEntity(aptEntity);
 
-        // CarEntity -cmNum
-        CarEntity carEntity = new CarEntity();
-        carEntity.setCmNum(memberDto.getCmNum());
+        // CarEntity - cmNum
+        CarEntity carEntity = CarEntity.toCarEntity(memberDto.getCarInfoDto());
         memberEntity.setCarEntity(carEntity);
 
-        // 나머지 필드 설정
         memberEntity.setMemberName(memberDto.getMemberName());
         memberEntity.setMemberPhone(memberDto.getMemberPhone());
 
         return memberEntity;
     }
-
 }

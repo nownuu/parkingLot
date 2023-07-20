@@ -5,6 +5,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/parking
     username: root
     password: 'dongyang'
+  flyway:
+    enabled: true
   thymeleaf:
     cache: false
 
@@ -17,4 +19,3 @@ spring:
     hibernate:
       ddl-auto: update
       use-new-id-generator-mappings: false
-

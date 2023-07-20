@@ -6,36 +6,31 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Setter
 @Getter
-
-@Data
-@Builder
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-
-@Table(name = "carInfo")
+@AllArgsConstructor
+@Table(name = "car_info")
 public class CarEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cmNum")
     private Long cmNum;
 
-    @Column(unique = true)
+    @Column(name = "car_num", unique = true)
     private String carNum;
 
-    @Column
+    @Column(name = "bat_value")
     private String batValue;
 
-    @Column
+    @Column(name = "car_color")
     private String carColor;
 
-    public static CarEntity toCarEntity(CarInfoDto carInfoDto){
+    public static CarEntity toCarEntity(CarInfoDto carInfoDto) {
         CarEntity carEntity = new CarEntity();
         carEntity.setCarNum(carInfoDto.getCarNum());
         carEntity.setBatValue(carInfoDto.getBatValue());
         carEntity.setCarColor(carInfoDto.getCarColor());
-
         return carEntity;
     }
 }

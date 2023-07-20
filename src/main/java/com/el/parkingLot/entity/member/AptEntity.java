@@ -6,28 +6,24 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Setter
 @Getter
-
-@Data
-@Builder
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-
-@Table(name = "aptInfo")
+@AllArgsConstructor
+@Table(name = "apt_info")
 public class AptEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amNum")
     private Long amNum;
 
-    @Column
+    @Column(name = "apt_name")
     private String aptName;
 
-    @Column
+    @Column(name = "apt_dong")
     private String aptDong;
 
-    @Column
+    @Column(name = "apt_ho")
     private String aptHo;
 
     public static AptEntity toAptEntity(AptInfoDto aptInfoDto) {
@@ -35,7 +31,6 @@ public class AptEntity {
         aptEntity.setAptName(aptInfoDto.getAptName());
         aptEntity.setAptDong(aptInfoDto.getAptDong());
         aptEntity.setAptHo(aptInfoDto.getAptHo());
-
         return aptEntity;
     }
 }

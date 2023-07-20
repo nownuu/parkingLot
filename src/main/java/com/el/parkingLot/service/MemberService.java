@@ -1,4 +1,3 @@
-// MemberService
 package com.el.parkingLot.service;
 
 import com.el.parkingLot.dto.member.MemberDto;
