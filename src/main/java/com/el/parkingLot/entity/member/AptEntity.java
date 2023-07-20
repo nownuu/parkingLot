@@ -19,7 +19,7 @@ public class AptEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "amNum")
-    private long amNum;
+    private Long amNum;
 
     @Column
     private String aptName;
@@ -30,7 +30,7 @@ public class AptEntity {
     @Column
     private String aptHo;
 
-    public static AptEntity toAptEntity(AptInfoDto aptInfoDto){
+    public static AptEntity toAptEntity(AptInfoDto aptInfoDto) {
         AptEntity aptEntity = new AptEntity();
         aptEntity.setAptName(aptInfoDto.getAptName());
         aptEntity.setAptDong(aptInfoDto.getAptDong());

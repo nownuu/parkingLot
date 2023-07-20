@@ -1,61 +1,36 @@
 package com.el.parkingLot.dto.member;
 
-import com.el.parkingLot.entity.member.CarEntity;
-import com.el.parkingLot.entity.member.MemberEntity;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class MemberDto {
-    private long memberNum;
-    private AptInfoDto aptInfoDto;
-    private CarInfoDto carInfoDto;
-    private long amNum;
-    private long cmNum;
+    private Long memberNum;
+    private AptInfoDto aptInfoDto = new AptInfoDto(); // 초기화
+    private CarInfoDto carInfoDto = new CarInfoDto(); // 초기화
     private String memberName;
     private String memberPhone;
 
-
-    public static MemberDto toMemberDto(MemberEntity memberEntity) {
-        MemberDto memberDto = new MemberDto();
-        memberDto.setMemberNum(memberEntity.getMemberNum());
-        memberDto.setAptInfoDto(AptInfoDto.fromAptEntity(memberEntity.getAptEntity()));
-        memberDto.setCarInfoDto(CarInfoDto.fromCarEntity(memberEntity.getCarEntity()));
-        memberDto.setMemberName(memberEntity.getMemberName());
-        memberDto.setMemberPhone(memberEntity.getMemberPhone());
-
-        // amNum 설정
-        if (memberEntity.getAptEntity() != null) {
-            memberDto.setAmNum(memberEntity.getAptEntity().getAmNum());
-        }
-
-        // cmNum 설정
-        if (memberEntity.getCarEntity() != null) {
-            memberDto.setCmNum(memberEntity.getCarEntity().getCmNum());
-        }
-
-        // aptInfoDto 값 로깅
-        System.out.println("aptInfoDto: " + memberDto.getAptInfoDto());
-
-        return memberDto;
+    public MemberDto(Long memberNum, String memberName, String memberPhone) {
+        this.memberNum = memberNum;
+        this.memberName = memberName;
+        this.memberPhone = memberPhone;
     }
 
-    public long getAmNum() {
+    // AptInfoDto로부터 amNum 값을 가져오는 메서드
+    public Long getAmNum() {
         if (aptInfoDto != null) {
             return aptInfoDto.getAmNum();
         }
-        return 0L;
+        return null; // null로 변경
     }
 
-    public long getCmNum() {
+    public Long getCmNum() {
         if (carInfoDto != null) {
             return carInfoDto.getCmNum();
         }
-        return 0L;
+        return null; // null로 변경
     }
-
 }

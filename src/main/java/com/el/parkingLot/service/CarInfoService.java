@@ -3,17 +3,24 @@ package com.el.parkingLot.service;
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.repository.member.CarInfoRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class CarInfoService {
 
     private final CarInfoRepository carInfoRepository;
 
-    public void CarInfoSave(CarInfoDto carInfoDto){
+    @Autowired
+    public CarInfoService(CarInfoRepository carInfoRepository){
+        this.carInfoRepository = carInfoRepository;
+    }
+
+    @Transactional
+    public CarInfoDto saveCarInfo(CarInfoDto carInfoDto){
         CarEntity carEntity = CarEntity.toCarEntity(carInfoDto);
-        carInfoRepository.save(carEntity);
+        CarEntity savedCarEntity = carInfoRepository.save(carEntity);
+        return CarInfoDto.fromCarEntity(savedCarEntity);
     }
 }

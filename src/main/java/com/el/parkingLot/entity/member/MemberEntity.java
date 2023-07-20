@@ -1,32 +1,29 @@
 package com.el.parkingLot.entity.member;
 
-import com.el.parkingLot.dto.member.AptInfoDto;
-import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.dto.member.MemberDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Entity
 @Setter
 @Getter
-@Table(name = "member") //테이블명
+@Table(name = "member")
 public class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) //auto_increment
-    @Column(name="memberNum")
-    private long memberNum;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="memberNum", nullable = false)
+    private Long memberNum;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "amNum", referencedColumnName = "amNum")
     private AptEntity aptEntity;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cmNum", referencedColumnName = "cmNum")
-    private CarEntity carEntity; // 자동차 정보
+    private CarEntity carEntity;
 
     @Column
     private String memberName;
@@ -37,12 +34,12 @@ public class MemberEntity {
     public static MemberEntity toMemberEntity(MemberDto memberDto) {
         MemberEntity memberEntity = new MemberEntity();
 
-        // AptEntity 설정
+        // AptEntity - amNum
         AptEntity aptEntity = new AptEntity();
         aptEntity.setAmNum(memberDto.getAmNum());
         memberEntity.setAptEntity(aptEntity);
 
-        // CarEntity 설정
+        // CarEntity -cmNum
         CarEntity carEntity = new CarEntity();
         carEntity.setCmNum(memberDto.getCmNum());
         memberEntity.setCarEntity(carEntity);
@@ -53,6 +50,5 @@ public class MemberEntity {
 
         return memberEntity;
     }
-
 
 }

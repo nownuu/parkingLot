@@ -5,11 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-  <form action="/parkingLot/save" method="post">
-    <!-- name : 서버로 전송 할 때 변수이름의 역할 -->
+<!--기존 회원가입 안될 시.. ..-->
+<form action="/parkingLot/save" method="post">
+    <input type="hidden" name="aptInfoDto.amNum" value="1">
+    아파트 이름 : <input type="text" name="aptInfoDto.aptName"><br>
+    아파트 동 : <input type="text" name="aptInfoDto.aptDong"><br>
+    아파트 호 : <input type="text" name="aptInfoDto.aptHo"><br>
+    <input type="hidden" name="carInfoDto.cmNum" value="1">
+    차량 번호 : <input type="text" name="carInfoDto.carNum"><br>
+
     이름: <input type="text" name="memberName"> <br>
     전화번호: <input type="text" name="memberPhone"> <br>
     <input type="submit" value="회원가입">
-  </form>
+</form>
 </body>
 </html>

@@ -3,17 +3,24 @@ package com.el.parkingLot.service;
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.entity.member.AptEntity;
 import com.el.parkingLot.repository.member.AptInfoRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class AptInfoService {
 
     private final AptInfoRepository aptInfoRepository;
 
-    public void AptInfoSave(AptInfoDto aptInfoDto){
+    @Autowired
+    public AptInfoService(AptInfoRepository aptInfoRepository) {
+        this.aptInfoRepository = aptInfoRepository;
+    }
+
+    @Transactional
+    public AptInfoDto saveAptInfo(AptInfoDto aptInfoDto) {
         AptEntity aptEntity = AptEntity.toAptEntity(aptInfoDto);
-        aptInfoRepository.save(aptEntity);
+        AptEntity savedAptEntity = aptInfoRepository.save(aptEntity);
+        return AptInfoDto.fromAptEntity(savedAptEntity);
     }
 }
