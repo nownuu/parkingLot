@@ -3,13 +3,11 @@ package com.el.parkingLot.controller;
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.dto.member.MemberDto;
+import com.el.parkingLot.entity.member.MemberEntity;
 import com.el.parkingLot.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +28,8 @@ public class MemberController {
         return new CarInfoDto();
     }
 
+
+    // 회원 가입 구현
     @GetMapping("/parkingLot/save")
     public String memberForm() {
         return "save";
@@ -49,6 +49,26 @@ public class MemberController {
         memberService.saveMember(memberDto);
 
         return "index"; // 회원가입 성공시 메인 화면으로 -> 이후 수정 가능
+    }
+
+    // 로그인 구현
+    @GetMapping("/parkingLot/login")
+    public String loginForm(){
+        return "login";
+    }
+
+    @PostMapping("/parkingLot/login")
+    public String login(@RequestParam String memberPhone, @RequestParam String carNum, HttpSession session) {
+        MemberEntity loggedInMember = memberService.login(memberPhone, carNum);
+
+        if (loggedInMember != null) {
+            // 로그인 성공 시, memberPhone 값을 세션에 저장
+            session.setAttribute("loginPhone", loggedInMember.getMemberPhone());
+            return "loginSuccess";
+        } else {
+            // 로그인 실패
+            return "login";
+        }
     }
 
 }
