@@ -79,9 +79,7 @@ public class MemberController {
     }
 
 
-    // 회원 목록 출력하기
-
-    // 회원 정보 조회
+    // 회원 목록 출력하기 -- 관리자 만들 때
 
 
 }

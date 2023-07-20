@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -46,5 +47,13 @@ public class MemberEntity {
         memberEntity.setMemberPhone(memberDto.getMemberPhone());
 
         return memberEntity;
+    }
+
+    // 본인 차량 정보 보기
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<CarEntity> cars;
+
+    public List<CarEntity> getCars() {
+        return cars;
     }
 }

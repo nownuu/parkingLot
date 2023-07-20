@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
-
     List<MemberEntity> findByMemberPhone(String memberPhone);
 }

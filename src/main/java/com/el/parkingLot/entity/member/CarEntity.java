@@ -33,4 +33,14 @@ public class CarEntity {
         carEntity.setCarColor(carInfoDto.getCarColor());
         return carEntity;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private MemberEntity member;
+
+    // Other getter and setter methods
+
+    public MemberEntity getMember() {
+        return member;
+    }
 }
