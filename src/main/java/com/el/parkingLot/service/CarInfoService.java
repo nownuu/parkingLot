@@ -35,7 +35,7 @@ public class CarInfoService {
 
     /// 본인 차량 정보 보기
     @Transactional
-    public List<CarInfoDto> getCarInfoByMemberPhone(String memberPhone) {
+    public List<CarInfoDto> findByCarNum(String memberPhone) {
         List<MemberEntity> memberList = memberRepository.findByMemberPhone(memberPhone);
 
         if (!memberList.isEmpty()) {

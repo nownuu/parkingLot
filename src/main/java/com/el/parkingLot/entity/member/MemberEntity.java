@@ -50,6 +50,7 @@ public class MemberEntity {
         return memberEntity;
     }
 
+
     // 본인 차량 정보 보기
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<CarEntity> cars;

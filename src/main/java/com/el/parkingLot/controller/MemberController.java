@@ -64,6 +64,11 @@ public class MemberController {
         if (loggedInMember != null) {
             // 로그인 성공 시, memberPhone 값을 세션에 저장
             session.setAttribute("loginPhone", loggedInMember.getMemberPhone());
+
+            // 차량 번호도 세션에 저장하기
+            String carNumSession = loggedInMember.getCarEntity().getCarNum();
+            session.setAttribute("loginCarNum", carNumSession);
+
             return "loginSuccess";
         } else {
             // 로그인 실패

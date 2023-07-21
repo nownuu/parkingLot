@@ -1,6 +1,8 @@
 package com.el.parkingLot.controller;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
+import com.el.parkingLot.entity.member.CarEntity;
+import com.el.parkingLot.repository.member.CarInfoRepository;
 import com.el.parkingLot.service.CarInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import java.util.List;
 public class CarInfoController {
 
     private final CarInfoService carInfoService;
+    private final CarInfoRepository carInfoRepository;
 
     @GetMapping("/parkingLot/CarInfoSave")
     public String CarInfoForm() {
@@ -38,18 +41,15 @@ public class CarInfoController {
     // 본인 차량 정보 출력하기 - 로그인이 안되어있는 경우 login으로 리다이엑트
     @GetMapping("/parkingLot/myCarInfo")
     public String getMyCarInfo(Model model, HttpSession session) {
-        String loginPhone = (String) session.getAttribute("loginPhone");
+        String loginCarNum = (String) session.getAttribute("loginCarNum");
+//        String loginPhone = (String) session.getAttribute("loginPhone");
 
         // 오류 확인 문구
-        System.out.println("CarInfoController.getMyCarInfo: " + loginPhone);
-        System.out.println(loginPhone);
+        System.out.println("CarInfoController.getMyCarInfo: " + loginCarNum);
+        System.out.println(loginCarNum);
 
-        if (loginPhone != null) {
-            List<CarInfoDto> myCarInfoList = carInfoService.getCarInfoByMemberPhone(loginPhone);
-
-            // 오류 확인 문구
-            System.out.println("myCarInfoList: " + myCarInfoList);
-
+        if (loginCarNum != null) {
+            List<CarEntity> myCarInfoList = carInfoRepository.findByCarNum(loginCarNum);
             model.addAttribute("myCarInfoList", myCarInfoList);
             return "myCarInfo";
         } else {
