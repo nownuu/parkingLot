@@ -39,8 +39,17 @@ public class CarInfoController {
     @GetMapping("/parkingLot/myCarInfo")
     public String getMyCarInfo(Model model, HttpSession session) {
         String loginPhone = (String) session.getAttribute("loginPhone");
+
+        // 오류 확인 문구
+        System.out.println("CarInfoController.getMyCarInfo: " + loginPhone);
+        System.out.println(loginPhone);
+
         if (loginPhone != null) {
             List<CarInfoDto> myCarInfoList = carInfoService.getCarInfoByMemberPhone(loginPhone);
+
+            // 오류 확인 문구
+            System.out.println("myCarInfoList: " + myCarInfoList);
+
             model.addAttribute("myCarInfoList", myCarInfoList);
             return "myCarInfo";
         } else {
@@ -48,5 +57,6 @@ public class CarInfoController {
             return "redirect:/parkingLot/login";
         }
     }
+
 
 }
