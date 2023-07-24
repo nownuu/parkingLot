@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class ParkInfoDto {
-    private int pcInfo;
+    private Long pcInfo;
 
     // 외래키
     private MemberDto memberDto = new MemberDto();

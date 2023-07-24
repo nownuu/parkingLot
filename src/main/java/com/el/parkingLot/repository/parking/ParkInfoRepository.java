@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ParkInfoRepository extends JpaRepository<ParkInfoEntity, Long> {
-    List<ParkInfoEntity> findByCarNum(String carNum);
+    List<ParkInfoEntity> findByCarNum(String loginCarNum);
 }

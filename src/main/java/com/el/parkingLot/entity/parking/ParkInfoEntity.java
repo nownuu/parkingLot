@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,13 +25,12 @@ public class ParkInfoEntity {
     @Column(name = "pcInfo")
     private Long pcInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "cmNum", nullable = false)
+    @JsonIgnore // JSON 직렬화 시 무한루프 방지
+    @OneToOne(mappedBy = "parkInfoEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private MemberEntity memberEntity;
 
-    // 일대다 관계를 정의합니다.
-    @OneToMany(mappedBy = "parkInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ParkLocaEntity> parkLocaEntityList;
+    @OneToOne(mappedBy = "parkInfoEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ParkLocaEntity parkLocaEntity;
 
     @Column(name = "inCar")
     private Timestamp inCar;
@@ -45,15 +45,14 @@ public class ParkInfoEntity {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(parkInfoDto.getMemberDto());
         parkInfoEntity.setMemberEntity(memberEntity);
 
-        // ParkEntity - pLocation
+        // ParkLocaEntity - pLocation
+        ParkLocaEntity parkLocaEntity = ParkLocaEntity.toParkEntity(parkInfoDto.getParkLocaDto());
+        parkInfoEntity.setParkLocaEntity(parkLocaEntity);
+
         parkInfoEntity.setInCar(parkInfoDto.getInCar());
         parkInfoEntity.setOutCar(parkInfoDto.getOutCar());
 
         return parkInfoEntity;
     }
-
-    @JsonIgnore
-    public List<ParkLocaEntity> getParking() {
-        return parkLocaEntityList;
-    }
 }
+

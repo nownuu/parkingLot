@@ -45,4 +45,10 @@ public class ParkLocaService {
             return new ArrayList<>();
         }
     }
+
+    // ParkInfoEntity를 통해 ParkLocaEntity 조회
+    @Transactional
+    public ParkLocaDto findByParkInfo(ParkInfoEntity parkInfoEntity) {
+        return ParkLocaDto.fromParkLocaEntity(parkInfoEntity.getParkLocaEntity());
+    }
 }
