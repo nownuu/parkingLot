@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>내 차량 주차장 정보 보기</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>pLocation</th>
+            <th>temp</th>
+            <th>gas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="parkLoca : ${parkLocaInfoList}">
+            <td th:text="${parkLoca.PLocation}"></td>
+            <td th:text="${parkLoca.temp}"></td>
+            <td th:text="${parkLoca.gas}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(parkLocaInfoList)}">
+            <td colspan="3">데이터가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

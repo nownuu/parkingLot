@@ -37,11 +37,13 @@ public class MemberEntity {
         MemberEntity memberEntity = new MemberEntity();
 
         // AptEntity - amNum
-        AptEntity aptEntity = AptEntity.toAptEntity(memberDto.getAptInfoDto());
+        AptEntity aptEntity = AptEntity.toAptEntity(
+                memberDto.getAptInfoDto());
         memberEntity.setAptEntity(aptEntity);
 
         // CarEntity - cmNum
-        CarEntity carEntity = CarEntity.toCarEntity(memberDto.getCarInfoDto());
+        CarEntity carEntity = CarEntity.toCarEntity(
+                memberDto.getCarInfoDto());
         memberEntity.setCarEntity(carEntity);
 
         memberEntity.setMemberName(memberDto.getMemberName());

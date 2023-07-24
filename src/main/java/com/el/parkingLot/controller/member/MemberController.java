@@ -1,10 +1,10 @@
-package com.el.parkingLot.controller;
+package com.el.parkingLot.controller.member;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.dto.member.MemberDto;
 import com.el.parkingLot.entity.member.MemberEntity;
-import com.el.parkingLot.service.MemberService;
+import com.el.parkingLot.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

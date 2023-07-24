@@ -1,9 +1,9 @@
-package com.el.parkingLot.controller;
+package com.el.parkingLot.controller.member;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.repository.member.CarInfoRepository;
-import com.el.parkingLot.service.CarInfoService;
+import com.el.parkingLot.service.member.CarInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,12 +1,8 @@
 package com.el.parkingLot.dto.parking;
 
+import com.el.parkingLot.entity.parking.ParkLocaEntity;
 import lombok.*;
-/*create table parkLoca(
-	pLocation char(2) NOT NULL check(pLocation='1A' or pLocation='2A' or pLocation = '1B' or pLocation = '2B'),
-    temp int NOT NULL,
-    gas varchar(3) default 'off' NOT NULL check(gas in ('on', 'off')),
-    PRIMARY KEY(pLocation)
-);*/
+
 @Getter
 @Setter
 @ToString
@@ -15,4 +11,13 @@ public class ParkLocaDto {
     private String pLocation;
     private int temp;
     private String gas;
+
+    public static ParkLocaDto fromParkLocaEntity(ParkLocaEntity parkLocaEntity){
+        ParkLocaDto parkLocaDto = new ParkLocaDto();
+        parkLocaDto.setPLocation(parkLocaEntity.getPLocation());
+        parkLocaDto.setTemp(parkLocaEntity.getTemp());
+        parkLocaDto.setGas(parkLocaEntity.getGas());
+
+        return parkLocaDto;
+    }
 }
