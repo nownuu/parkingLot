@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "parkLoca_info")
+@Table(name = "parkLoca")
 public class ParkLocaEntity {
     @Id
     @Column(name = "pLocation")
@@ -29,6 +29,7 @@ public class ParkLocaEntity {
     @JoinColumn(name = "parkInfo", referencedColumnName = "pcInfo")
     private ParkInfoEntity parkInfoEntity;
 
+
     public static ParkLocaEntity toParkEntity(ParkLocaDto parkLocaDto) {
         ParkLocaEntity parkLocaEntity = new ParkLocaEntity();
         parkLocaEntity.setPLocation(parkLocaDto.getPLocation());
@@ -36,5 +37,14 @@ public class ParkLocaEntity {
         parkLocaEntity.setGas(parkLocaDto.getGas());
 
         return parkLocaEntity;
+    }
+
+    public static ParkLocaDto toParkLocaDto(ParkLocaEntity parkLocaEntity) {
+        ParkLocaDto parkLocaDto = new ParkLocaDto();
+        parkLocaDto.setPLocation(parkLocaEntity.getPLocation());
+        parkLocaDto.setTemp(parkLocaEntity.getTemp());
+        parkLocaDto.setGas(parkLocaEntity.getGas());
+
+        return parkLocaDto;
     }
 }

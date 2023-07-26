@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface ParkLocaRepository extends JpaRepository<ParkLocaEntity, String> {
-    List<ParkLocaEntity> findByCarNum(String carNum);
-
 }
