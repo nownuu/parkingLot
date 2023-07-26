@@ -10,16 +10,12 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class ParkInfoDto {
-    private Long pcInfo;
-    private MemberDto memberDto = new MemberDto();
+    private int pcInfo;
 
     // 외래키
+    private MemberDto memberDto = new MemberDto();
     private ParkLocaDto parkLocaDto = new ParkLocaDto();
 
     private Timestamp inCar; // 입차
     private Timestamp outCar; // 출차
-
-    public void setParkLocaDto(ParkLocaDto parkLocaDto) {
-        this.parkLocaDto = parkLocaDto;
-    }
 }
