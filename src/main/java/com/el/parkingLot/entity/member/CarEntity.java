@@ -1,6 +1,7 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
+import com.el.parkingLot.entity.parking.ParkInfoEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -26,6 +27,11 @@ public class CarEntity {
 
     @Column(name = "car_color")
     private String carColor;
+
+    @JsonIgnore // JSON 직렬화 시 무한루프 방지
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmNum")
+    private ParkInfoEntity parkInfoEntity;
 
     public static CarEntity toCarEntity(CarInfoDto carInfoDto) {
         CarEntity carEntity = new CarEntity();

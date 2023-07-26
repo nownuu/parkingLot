@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Getter
@@ -25,12 +24,12 @@ public class ParkInfoEntity {
     private Long pcInfo;
 
     @ManyToOne
-    @JoinColumn(name = "cmNum", nullable = false)
+    @JoinColumn(name = "memberEntity")
     private MemberEntity memberEntity;
 
-    // 일대다 관계를 정의합니다.
-    @OneToMany(mappedBy = "parkInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ParkLocaEntity> parkLocaEntityList;
+    @OneToOne
+    @JoinColumn(name = "parkLocaEntity")
+    private ParkLocaEntity parkLocaEntity;
 
     @Column(name = "inCar")
     private Timestamp inCar;
@@ -45,15 +44,13 @@ public class ParkInfoEntity {
         MemberEntity memberEntity = MemberEntity.toMemberEntity(parkInfoDto.getMemberDto());
         parkInfoEntity.setMemberEntity(memberEntity);
 
-        // ParkEntity - pLocation
+        // ParkLocaEntity - pLocation
+        ParkLocaEntity parkLocaEntity = ParkLocaEntity.toParkEntity(parkInfoDto.getParkLocaDto());
+        parkInfoEntity.setParkLocaEntity(parkLocaEntity);
+
         parkInfoEntity.setInCar(parkInfoDto.getInCar());
         parkInfoEntity.setOutCar(parkInfoDto.getOutCar());
 
         return parkInfoEntity;
-    }
-
-    @JsonIgnore
-    public List<ParkLocaEntity> getParking() {
-        return parkLocaEntityList;
     }
 }

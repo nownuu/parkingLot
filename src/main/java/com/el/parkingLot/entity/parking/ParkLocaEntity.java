@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -26,21 +25,16 @@ public class ParkLocaEntity {
     @Column(name = "gas")
     private String gas;
 
-    public static ParkLocaEntity toParkEntity(ParkLocaDto parkLocaDto){
+    @OneToOne
+    @JoinColumn(name = "parkInfo", referencedColumnName = "pcInfo")
+    private ParkInfoEntity parkInfoEntity;
+
+    public static ParkLocaEntity toParkEntity(ParkLocaDto parkLocaDto) {
         ParkLocaEntity parkLocaEntity = new ParkLocaEntity();
         parkLocaEntity.setPLocation(parkLocaDto.getPLocation());
         parkLocaEntity.setTemp(parkLocaDto.getTemp());
         parkLocaEntity.setGas(parkLocaDto.getGas());
 
         return parkLocaEntity;
-    }
-
-    // 본인 차량 주차장 정보 보기
-
-    @OneToMany(mappedBy = "parkLocaEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ParkInfoEntity> parkLocaEntityList;
-
-    public List<ParkInfoEntity> getParking() {
-        return parkLocaEntityList;
     }
 }

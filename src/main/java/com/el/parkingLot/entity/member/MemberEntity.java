@@ -1,6 +1,7 @@
 package com.el.parkingLot.entity.member;
 
 import com.el.parkingLot.dto.member.MemberDto;
+import com.el.parkingLot.entity.parking.ParkInfoEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -61,4 +62,10 @@ public class MemberEntity {
     public List<CarEntity> getCars() {
         return cars;
     }
+
+    // 본인 차량 주차장 정보 보기
+    @JsonIgnore // JSON 직렬화 시 무한루프 방지
+    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ParkInfoEntity> parkInfoEntities;
+
 }

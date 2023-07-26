@@ -11,5 +11,7 @@ import java.util.Optional;
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     List<MemberEntity> findByMemberPhone(String memberPhone);
+
+    MemberEntity findByCarNum(String loginCarNum);
 //    List<CarEntity> findByCarNum(String carNum);
 }
