@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ParkInfoController {
 
-    private final ParkInfoService parkInfoService;
+    /*private final ParkInfoService parkInfoService;
 
     // 주차 관련 정보 조회하기
     @GetMapping("/{pcInfo}")
@@ -38,10 +38,10 @@ public class ParkInfoController {
     }
 
     // 본인 차량 주차장 정보 조회하기
-    @GetMapping("/parkLocaInfo/{carNum}")
+    // 세션값을 이용해서 조회하는 방법 찾아보기
+    @GetMapping("/parkLocaInfo/{memberNum}")
     public ResponseEntity<List<ParkLocaDto>> getMyParkingInfo(@PathVariable String carNum) {
         List<ParkLocaDto> parkLocaList = parkInfoService.getParkLocaInfo(carNum);
         return ResponseEntity.ok(parkLocaList);
-    }
+    }*/
 }
-

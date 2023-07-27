@@ -25,19 +25,10 @@ public class ParkLocaEntity {
     @Column(name = "gas")
     private String gas;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "parkInfo", referencedColumnName = "pcInfo")
     private ParkInfoEntity parkInfoEntity;
 
-
-    public static ParkLocaEntity toParkEntity(ParkLocaDto parkLocaDto) {
-        ParkLocaEntity parkLocaEntity = new ParkLocaEntity();
-        parkLocaEntity.setPLocation(parkLocaDto.getPLocation());
-        parkLocaEntity.setTemp(parkLocaDto.getTemp());
-        parkLocaEntity.setGas(parkLocaDto.getGas());
-
-        return parkLocaEntity;
-    }
 
     public static ParkLocaDto toParkLocaDto(ParkLocaEntity parkLocaEntity) {
         ParkLocaDto parkLocaDto = new ParkLocaDto();

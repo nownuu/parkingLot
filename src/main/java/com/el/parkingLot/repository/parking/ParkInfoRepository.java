@@ -9,8 +9,5 @@ import java.util.List;
 
 public interface ParkInfoRepository extends JpaRepository<ParkInfoEntity, Long> {
 
-    @Query("SELECT p FROM ParkInfoEntity p JOIN FETCH p.parkLocaEntityList")
-    List<ParkInfoEntity> findAllWithParkLoca();
-
-    List<ParkLocaEntity> findParkLocaInfoByCarNum(String carNum);
+    List<ParkInfoEntity> findByCarNum(String loginCarNum);
 }

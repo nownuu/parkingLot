@@ -25,12 +25,16 @@ public class ParkInfoEntity {
     private Long pcInfo;
 
     @ManyToOne
-    @JoinColumn(name = "cmNum", nullable = false)
+    @JoinColumn(name = "memberNum", nullable = false)
     private MemberEntity memberEntity;
 
-    // 일대다 관계를 정의합니다.
-    @OneToMany(mappedBy = "parkInfo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "parkInfoEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ParkLocaEntity> parkLocaEntityList;
+
+    @JsonIgnore
+    public List<ParkLocaEntity> getParking() {
+        return parkLocaEntityList;
+    }
 
     @Column(name = "inCar")
     private Timestamp inCar;
@@ -52,8 +56,5 @@ public class ParkInfoEntity {
         return parkInfoEntity;
     }
 
-    @JsonIgnore
-    public List<ParkLocaEntity> getParking() {
-        return parkLocaEntityList;
-    }
+
 }
