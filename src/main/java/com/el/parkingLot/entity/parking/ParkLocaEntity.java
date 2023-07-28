@@ -16,26 +16,12 @@ import javax.persistence.*;
 @Table(name = "parkLoca")
 public class ParkLocaEntity {
     @Id
-    @Column(name = "pLocation")
-    private String pLocation;
+    @Column(name = "pLocation", length = 2)
+    private String pLocation; // 주차장 위치 (e.g., "1A", "2A", "1B", "2B")
 
-    @Column(name = "temp")
-    private int temp;
+    @Column(name = "temp", nullable = false)
+    private int temp; // 주차장 온도
 
-    @Column(name = "gas")
-    private String gas;
-
-    @ManyToOne
-    @JoinColumn(name = "parkInfo", referencedColumnName = "pcInfo")
-    private ParkInfoEntity parkInfoEntity;
-
-
-    public static ParkLocaDto toParkLocaDto(ParkLocaEntity parkLocaEntity) {
-        ParkLocaDto parkLocaDto = new ParkLocaDto();
-        parkLocaDto.setPLocation(parkLocaEntity.getPLocation());
-        parkLocaDto.setTemp(parkLocaEntity.getTemp());
-        parkLocaDto.setGas(parkLocaEntity.getGas());
-
-        return parkLocaDto;
-    }
+    @Column(name = "gas", nullable = false, length = 3)
+    private String gas; // 주차장 가스 정보 ("on" 또는 "off")
 }

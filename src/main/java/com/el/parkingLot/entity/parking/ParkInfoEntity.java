@@ -1,6 +1,8 @@
 package com.el.parkingLot.entity.parking;
 
 import com.el.parkingLot.dto.parking.ParkInfoDto;
+import com.el.parkingLot.entity.member.AptEntity;
+import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.entity.member.MemberEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -10,7 +12,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Getter
@@ -22,39 +23,27 @@ public class ParkInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pcInfo")
-    private Long pcInfo;
+    private Long pcInfo; // 주차번호 PK
 
-    @ManyToOne
-    @JoinColumn(name = "memberNum", nullable = false)
-    private MemberEntity memberEntity;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "memNum", nullable = false)
+    private MemberEntity member; // 회원번호 FK
 
-    @OneToMany(mappedBy = "parkInfoEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ParkLocaEntity> parkLocaEntityList;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "amNum", nullable = false)
+    private AptEntity aptEntity; // 아파트관리번호 FK
 
-    @JsonIgnore
-    public List<ParkLocaEntity> getParking() {
-        return parkLocaEntityList;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pLocation", nullable = false)
+    private ParkLocaEntity parkLocaEntity; // 위치 FK
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cmNum", nullable = false)
+    private CarEntity carEntity; // 차량 관리번호 FK
 
     @Column(name = "inCar")
-    private Timestamp inCar;
+    private Timestamp inCar; // 입차시간
 
     @Column(name = "outCar")
-    private Timestamp outCar;
-
-    public static ParkInfoEntity toParkInfoEntity(ParkInfoDto parkInfoDto) {
-        ParkInfoEntity parkInfoEntity = new ParkInfoEntity();
-
-        // MemberEntity - memberNum, amNum, cmNum
-        MemberEntity memberEntity = MemberEntity.toMemberEntity(parkInfoDto.getMemberDto());
-        parkInfoEntity.setMemberEntity(memberEntity);
-
-        // ParkEntity - pLocation
-        parkInfoEntity.setInCar(parkInfoDto.getInCar());
-        parkInfoEntity.setOutCar(parkInfoDto.getOutCar());
-
-        return parkInfoEntity;
-    }
-
-
+    private Timestamp outCar; // 출차시간
 }
