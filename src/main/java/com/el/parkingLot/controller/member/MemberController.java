@@ -1,4 +1,4 @@
-package com.el.parkingLot.controller;
+package com.el.parkingLot.controller.member;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.dto.member.CarInfoDto;

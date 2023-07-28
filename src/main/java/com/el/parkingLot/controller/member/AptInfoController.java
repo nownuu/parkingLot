@@ -1,4 +1,4 @@
-package com.el.parkingLot.controller;
+package com.el.parkingLot.controller.member;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.service.member.AptInfoService;
@@ -22,9 +22,6 @@ public class AptInfoController {
 
     @PostMapping("/parkingLot/AptInfoSave")
     public String save(@ModelAttribute AptInfoDto aptInfoDto, HttpSession session) {
-        System.out.println("AptInfoController.save");
-        System.out.println("AptInfoDTO = " + aptInfoDto);
-
         // 아파트 정보를 데이터베이스에 저장
         AptInfoDto savedAptInfo = aptInfoService.saveAptInfo(aptInfoDto);
 

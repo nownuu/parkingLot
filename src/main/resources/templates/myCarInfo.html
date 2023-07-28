@@ -6,27 +6,27 @@
     <title>Title</title>
 </head>
 <body>
-<h1>내 차량 정보 보기</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Car Number</th>
-        <th>Battery Value</th>
-        <th>Car Color</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Using Thymeleaf to iterate through the car info list -->
-    <tr th:each="carInfo : ${myCarInfoList}">
-        <td th:text="${carInfo.carNum}"></td>
-        <td th:text="${carInfo.batValue}"></td>
-        <td th:text="${carInfo.carColor}"></td>
-    </tr>
-    <tr th:if="${#lists.isEmpty(myCarInfoList)}">
-        <td colspan="3">데이터가 없습니다.</td>
-    </tr>
-    </tbody>
-</table>
+    <h1>내 차량 정보 보기</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Car Number</th>
+            <th>Battery Value</th>
+            <th>Car Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Using Thymeleaf to iterate through the car info list -->
+        <tr th:each="carInfo : ${myCarInfoList}">
+            <td th:text="${carInfo.carNum}"></td>
+            <td th:text="${carInfo.batValue}"></td>
+            <td th:text="${carInfo.carColor}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(myCarInfoList)}">
+            <td colspan="3">데이터가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
 <a href="/parkingLot/logout">Logout</a>
 </body>
 </html>
