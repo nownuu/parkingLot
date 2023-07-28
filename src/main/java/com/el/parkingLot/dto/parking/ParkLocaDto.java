@@ -1,5 +1,6 @@
 package com.el.parkingLot.dto.parking;
 
+import com.el.parkingLot.entity.parking.ParkLocaEntity;
 import lombok.*;
 /*create table parkLoca(
 	pLocation char(2) NOT NULL check(pLocation='1A' or pLocation='2A' or pLocation = '1B' or pLocation = '2B'),
@@ -15,4 +16,12 @@ public class ParkLocaDto {
     private String pLocation;
     private int temp;
     private String gas;
+
+    public static ParkLocaDto toParkLocaDto(ParkLocaEntity parkLocaEntity) {
+        ParkLocaDto parkLocaDto = new ParkLocaDto();
+        parkLocaDto.setPLocation(parkLocaEntity.getLocation());
+        parkLocaDto.setTemp(parkLocaEntity.getTemperature());
+        parkLocaDto.setGas(parkLocaEntity.getGas());
+        return parkLocaDto;
+    }
 }

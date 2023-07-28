@@ -1,4 +1,4 @@
-package com.el.parkingLot.service;
+package com.el.parkingLot.service.member;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.entity.member.AptEntity;

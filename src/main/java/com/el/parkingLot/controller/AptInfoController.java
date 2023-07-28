@@ -1,7 +1,7 @@
 package com.el.parkingLot.controller;
 
 import com.el.parkingLot.dto.member.AptInfoDto;
-import com.el.parkingLot.service.AptInfoService;
+import com.el.parkingLot.service.member.AptInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
