@@ -64,8 +64,9 @@ public class MemberEntity {
     }
 
     // 본인 차량 주차장 정보 보기
-    @JsonIgnore // JSON 직렬화 시 무한루프 방지
-    @OneToMany(mappedBy = "memberEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ParkInfoEntity> parkInfoEntities;
+
 
 }

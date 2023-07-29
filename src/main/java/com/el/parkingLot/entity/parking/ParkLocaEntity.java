@@ -22,7 +22,7 @@ public class ParkLocaEntity {
     @Column(name = "location")
     private String location; // 주차장 위치
 
-    @Column(name = "temperature")
+    @Column(name = "temp")
     private int temperature; // 주차장 온도
 
     @Column(name = "gas")

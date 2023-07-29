@@ -43,9 +43,6 @@ public class MemberController {
         AptInfoDto aptInfoDto = memberDto.getAptInfoDto();
         CarInfoDto carInfoDto = memberDto.getCarInfoDto();
 
-        System.out.println("AptInfoDTO = " + aptInfoDto);
-        System.out.println("CarInfoDTO = " + carInfoDto);
-
         memberService.saveMember(memberDto);
 
         return "index"; // 회원가입 성공시 메인 화면으로 -> 이후 수정 가능

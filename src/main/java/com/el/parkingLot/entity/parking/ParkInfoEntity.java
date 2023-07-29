@@ -1,5 +1,6 @@
 package com.el.parkingLot.entity.parking;
 
+import com.el.parkingLot.dto.parking.ParkInfoDto;
 import com.el.parkingLot.entity.member.AptEntity;
 import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.entity.member.MemberEntity;
@@ -24,7 +25,7 @@ public class ParkInfoEntity {
     private Long pcInfo; // 주차번호 PK
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memNum", nullable = false)
+    @JoinColumn(name = "memberNum", nullable = false)
     private MemberEntity member; // 회원번호 FK
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,7 +33,7 @@ public class ParkInfoEntity {
     private AptEntity aptEntity; // 아파트관리번호 FK
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pLocation", nullable = false)
+    @JoinColumn(name = "pLocationId", nullable = false)
     private ParkLocaEntity parkLocaEntity; // 위치 FK
 
     @ManyToOne(fetch = FetchType.LAZY)

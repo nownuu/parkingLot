@@ -1,4 +1,4 @@
-package com.el.parkingLot.controller;
+package com.el.parkingLot.controller.member;
 
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.entity.member.CarEntity;
@@ -28,9 +28,6 @@ public class CarInfoController {
 
     @PostMapping("/parkingLot/CarInfoSave")
     public String save(@ModelAttribute CarInfoDto carInfoDto, HttpSession session){
-        System.out.println("CarInfoController.save");
-        System.out.println("CarInfoDTO = " + carInfoDto);
-
         CarInfoDto savedCarInfo = carInfoService.saveCarInfo(carInfoDto);
 
         session.setAttribute("carEntity", savedCarInfo);
@@ -42,11 +39,6 @@ public class CarInfoController {
     @GetMapping("/parkingLot/myCarInfo")
     public String getMyCarInfo(Model model, HttpSession session) {
         String loginCarNum = (String) session.getAttribute("loginCarNum");
-//        String loginPhone = (String) session.getAttribute("loginPhone");
-
-        // 오류 확인 문구
-        System.out.println("CarInfoController.getMyCarInfo: " + loginCarNum);
-        System.out.println(loginCarNum);
 
         if (loginCarNum != null) {
             List<CarEntity> myCarInfoList = carInfoRepository.findByCarNum(loginCarNum);
@@ -57,6 +49,4 @@ public class CarInfoController {
             return "redirect:/parkingLot/login";
         }
     }
-
-
 }
