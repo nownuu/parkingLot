@@ -3,26 +3,26 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Park Location Information</title>
+  <title>주차장 위치 정보</title>
 </head>
 <body>
-<h1>Parking Location Information</h1>
+<h1>주차장 위치 정보</h1>
 <table>
   <thead>
   <tr>
-    <th>Park Location ID</th>
-    <th>Location</th>
-    <th>Temperature</th>
-    <th>Gas Information</th>
-    <th>Entry Time</th>
-    <th>Exit Time</th>
+    <th>주차장 ID</th>
+    <th>위치</th>
+    <th>온도</th>
+    <th>가스 여부</th>
+    <th>입차</th>
+    <th>출차</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="parkLocaInfo : ${parkLocaInfoList}">
-    <td th:text="${parkLocaInfo[0].pcInfo}"></td>
+    <td th:text="${parkLocaInfo[0].parkLocaEntity.parkLocaId}"></td>
     <td th:text="${parkLocaInfo[0].parkLocaEntity.location}"></td>
-    <td th:text="${parkLocaInfo[0].parkLocaEntity.temp}"></td>
+    <td th:text="${parkLocaInfo[0].parkLocaEntity.temperature}"></td>
     <td th:text="${parkLocaInfo[0].parkLocaEntity.gas}"></td>
     <td th:text="${parkLocaInfo[0].inCar}"></td>
     <td th:text="${parkLocaInfo[0].outCar}"></td>
@@ -32,6 +32,5 @@
   </tr>
   </tbody>
 </table>
-<a href="/parkingLot/logout">Logout</a>
 </body>
 </html>
