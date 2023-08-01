@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Parking Information</title>
+</head>
+<body>
+<h2>본인 차량 추자 정보</h2>
+<table>
+    <thead>
+    <tr>
+        <th>차량 번호</th>
+        <th>입차 시간</th>
+        <th>출차 시간</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="parkInfo : ${parkInfoDtoList}">
+<!--        차량 번호로 해두긴 했는데 어플로 들어갈때 내 차량 정보 보는거랑 섞을거라 괜찮을듯   -->
+        <td th:text="${parkInfo.pcInfo}"></td>
+        <td th:text="${parkInfo.inCar}"></td>
+        <td th:text="${parkInfo.outCar}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>주차장 위치 정보</h2>
+<table>
+    <thead>
+    <tr>
+        <th>위치</th>
+        <th>온도</th>
+        <th>가스</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="parkLoca : ${parkLocaDtoList}">
+        <td th:text="${parkLoca.pLocation}"></td>
+        <td th:text="${parkLoca.temp}"></td>
+        <td th:text="${parkLoca.gas}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/parkingLot/index">index 페이지</a>
+</body>
+</html>

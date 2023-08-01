@@ -16,7 +16,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Using Thymeleaf to iterate through the car info list -->
         <tr th:each="carInfo : ${myCarInfoList}">
             <td th:text="${carInfo.carNum}"></td>
             <td th:text="${carInfo.batValue}"></td>

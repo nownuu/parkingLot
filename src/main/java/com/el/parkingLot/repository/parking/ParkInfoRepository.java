@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ParkInfoRepository  extends JpaRepository<ParkInfoEntity, Long> {
-
+    List<ParkInfoEntity> findByMember_MemberPhone(String loginPhone);
 }

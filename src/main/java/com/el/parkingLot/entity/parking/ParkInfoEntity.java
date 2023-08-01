@@ -32,7 +32,7 @@ public class ParkInfoEntity {
     @JoinColumn(name = "amNum", nullable = false)
     private AptEntity aptEntity; // 아파트관리번호 FK
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pLocationId", nullable = false)
     private ParkLocaEntity parkLocaEntity; // 위치 FK
 

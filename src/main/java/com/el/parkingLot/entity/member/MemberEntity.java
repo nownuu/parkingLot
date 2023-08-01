@@ -65,8 +65,9 @@ public class MemberEntity {
 
     // 본인 차량 주차장 정보 보기
     @JsonIgnore
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<ParkInfoEntity> parkInfoEntities;
+
 
 
 }

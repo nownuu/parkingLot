@@ -1,5 +1,6 @@
 package com.el.parkingLot.service.parking;
 
+import com.el.parkingLot.dto.parking.ParkInfoDto;
 import com.el.parkingLot.entity.parking.ParkInfoEntity;
 import com.el.parkingLot.entity.parking.ParkLocaEntity;
 import com.el.parkingLot.repository.parking.ParkInfoRepository;
@@ -12,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +33,7 @@ public class ParkInfoService {
 //        // 추후에 저장 로직
 //    }
 
+    //전체 차량 정보 보기
     @Transactional
     public List<Object[]> getParkInfoWithParkLoca() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -43,4 +46,7 @@ public class ParkInfoService {
         List<Object[]> result = entityManager.createQuery(query).getResultList();
         return result;
     }
+
+
+
 }
