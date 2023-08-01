@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Park Location Information</title>
+</head>
+<body>
+<h1>Parking Location Information</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Park Location ID</th>
+    <th>Location</th>
+    <th>Temperature</th>
+    <th>Gas Information</th>
+    <th>Entry Time</th>
+    <th>Exit Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="parkLocaInfo : ${parkLocaInfoList}">
+    <td th:text="${parkLocaInfo[0].pcInfo}"></td>
+    <td th:text="${parkLocaInfo[0].parkLocaEntity.location}"></td>
+    <td th:text="${parkLocaInfo[0].parkLocaEntity.temp}"></td>
+    <td th:text="${parkLocaInfo[0].parkLocaEntity.gas}"></td>
+    <td th:text="${parkLocaInfo[0].inCar}"></td>
+    <td th:text="${parkLocaInfo[0].outCar}"></td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(parkLocaInfoList)}">
+    <td colspan="6">Data is not available.</td>
+  </tr>
+  </tbody>
+</table>
+<a href="/parkingLot/logout">Logout</a>
+</body>
+</html>
