@@ -5,9 +5,11 @@ import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.entity.member.MemberEntity;
 import com.el.parkingLot.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,4 +41,10 @@ public class MemberService {
 
         return null;
     }
+
+    // 전체 멤버 정보 보기
+    public List<Object[]> getMemberInfo() {
+        return memberRepository.findAllWithCarAndApt(); // 쿼리 메소드 호출
+    }
+
 }

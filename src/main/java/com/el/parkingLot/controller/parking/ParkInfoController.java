@@ -76,8 +76,8 @@ public class ParkInfoController {
             ParkInfoEntity parkInfoEntity = (ParkInfoEntity) row[0];
             ParkLocaEntity parkLocaEntity = (ParkLocaEntity) row[1];
 
-            System.out.println("ParkInfoEntity - pcInfo: " + parkInfoEntity.getPcInfo() + ", inCar: " + parkInfoEntity.getInCar());
-            System.out.println("ParkLocaEntity - parkLocaId: " + parkLocaEntity.getParkLocaId() + ", location: " + parkLocaEntity.getLocation());
+//            System.out.println("ParkInfoEntity - pcInfo: " + parkInfoEntity.getPcInfo() + ", inCar: " + parkInfoEntity.getInCar());
+//            System.out.println("ParkLocaEntity - parkLocaId: " + parkLocaEntity.getParkLocaId() + ", location: " + parkLocaEntity.getLocation());
         }
 
         model.addAttribute("parkLocaInfoList", result);

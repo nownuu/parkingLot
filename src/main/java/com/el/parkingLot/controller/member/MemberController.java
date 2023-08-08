@@ -3,13 +3,17 @@ package com.el.parkingLot.controller.member;
 import com.el.parkingLot.dto.member.AptInfoDto;
 import com.el.parkingLot.dto.member.CarInfoDto;
 import com.el.parkingLot.dto.member.MemberDto;
+import com.el.parkingLot.entity.member.AptEntity;
+import com.el.parkingLot.entity.member.CarEntity;
 import com.el.parkingLot.entity.member.MemberEntity;
 import com.el.parkingLot.service.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -82,7 +86,11 @@ public class MemberController {
 
 
     // 회원 목록 출력하기 -- 관리자 만들 때
-
-
+    @GetMapping("/parkingLot/adminMember")
+    public String getMemberInfo(Model model) {
+        List<Object[]> result = memberService.getMemberInfo();
+        model.addAttribute("memberList", result);
+        return "adminMember";
+    }
 }
 

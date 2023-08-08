@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 정보 보기</title>
+</head>
+<body>
+<h1>회원 정보 보기</h1>
+<table>
+    <thead>
+    <tr>
+        <th>회원 번호</th>
+        <th>회원 이름</th>
+        <th>회원 전화번호</th>
+        <th>차량 번호</th>
+        <th>차량 번호판색상</th>
+        <th>아파트 이름</th>
+        <th>아파트 동</th>
+        <th>아파트 호수</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${memberList}">
+        <td th:text="${row[0].memberNum}"></td>
+        <td th:text="${row[0].memberName}"></td>
+        <td th:text="${row[0].memberPhone}"></td>
+        <td th:text="${row[0].carEntity != null ? row[0].carEntity.carNum : ''}"></td>
+        <td th:text="${row[0].carEntity != null ? row[0].carEntity.carColor : ''}"></td>
+        <td th:text="${row[0].aptEntity != null ? row[0].aptEntity.aptName : ''}"></td>
+        <td th:text="${row[0].aptEntity != null ? row[0].aptEntity.aptDong : ''}"></td>
+        <td th:text="${row[0].aptEntity != null ? row[0].aptEntity.aptHo : ''}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
