@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
+@RequestMapping("/mvc/parkingLot")
 @RequiredArgsConstructor
 @SessionAttributes({"aptInfoDto", "carInfoDto"})
 public class MemberController {
