@@ -29,12 +29,12 @@ public class MemberRestController {
         return new CarInfoDto();
     }
 
-    @GetMapping("/save")
+    @GetMapping("/saveForm")
     public String memberForm() {
         return "save";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/saveMember")
     public ResponseEntity<String> save(@RequestBody MemberDto memberDto) {
         AptInfoDto aptInfoDto = memberDto.getAptInfoDto();
         CarInfoDto carInfoDto = memberDto.getCarInfoDto();
