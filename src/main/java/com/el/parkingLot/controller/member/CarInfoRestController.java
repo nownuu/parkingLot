@@ -7,7 +7,6 @@ import com.el.parkingLot.service.member.CarInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -18,22 +17,15 @@ public class CarInfoRestController {
     private final CarInfoService carInfoService;
     private final CarInfoRepository carInfoRepository;
 
-    @PostMapping("/carInfoSave")
-    public CarInfoDto saveCarInfo(@RequestBody CarInfoDto carInfoDto, HttpSession session) {
-        CarInfoDto savedCarInfo = carInfoService.saveCarInfo(carInfoDto);
-        session.setAttribute("carEntity", savedCarInfo);
-        return savedCarInfo;
+    @PostMapping("/save")
+    public CarInfoDto saveCarInfo(@RequestBody CarInfoDto carInfoDto) {
+        return carInfoService.saveCarInfo(carInfoDto);
     }
 
     // 본인 차량 정보 보기
-    @GetMapping("/myCarInfo")
-    public List<CarEntity> getMyCarInfo(HttpSession session) {
-        String loginCarNum = (String) session.getAttribute("loginCarNum");
-        if (loginCarNum != null) {
-            return carInfoRepository.findByCarNum(loginCarNum);
-        } else {
-            // 에러 시...
-            return null;
-        }
+    @GetMapping("/myInfo")
+    public List<CarEntity> getMyCarInfo(@RequestParam String carNum) {
+        // carNum을 사용하여 차량 정보 조회
+        return carInfoRepository.findByCarNum(carNum);
     }
 }
