@@ -32,7 +32,6 @@ public class CarInfoService {
         return CarInfoDto.fromCarEntity(savedCarEntity);
     }
 
-
     @Transactional
     // 본인 차량 정보 보기
     public List<CarInfoDto> findByCarNum(String memberPhone) {
