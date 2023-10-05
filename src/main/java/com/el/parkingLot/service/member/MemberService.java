@@ -44,7 +44,7 @@ public class MemberService {
 
     // 전체 멤버 정보 보기
     public List<Object[]> getMemberInfo() {
+
         return memberRepository.findAllWithCarAndApt(); // 쿼리 메소드 호출
     }
-
 }
